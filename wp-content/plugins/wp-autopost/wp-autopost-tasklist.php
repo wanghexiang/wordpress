@@ -28,7 +28,7 @@ switch($saction){
 <form id="myform"  method="post" action="admin.php?page=wp-autopost/wp-autopost-tasklist.php" > 
 <input type="hidden" name="saction" id="saction" value="newConfig">
   <br/> 
-<?php $count = $wpdb->get_var('SELECT count(*) FROM '.$t_f_ap_cnofig); ?>
+<?php $count = $wpdb->get_var('SELECT count(*) FROM '.$t_f_ap_cnofig); $count=false;?>
 <?php if($count>=1){ ?>
   <div  class="updated fade"><p><?php echo __('Free version can only create one task','wp-autopost'); ?>, <a href="http://wp-autopost.org" target="_blank"><?php echo __('Upgrade','wp-autopost'); ?></a></p></div> 
   <a href="admin.php?page=wp-autopost/wp-autopost-tasklist.php" class="button"><?php echo __('Return','wp-autopost'); ?></a>
@@ -2537,10 +2537,10 @@ else $perPage=$wp_autopost_per_page['task'];
 $from = (($page * $perPage) - $perPage);
 $total = $wpdb->get_var('SELECT count(*) FROM '.$t_f_ap_cnofig);
 $total_pages = ceil($total / $perPage);
-$config = $wpdb->get_row('SELECT * FROM '.$t_f_ap_cnofig.' ORDER BY id LIMIT 1'); 
+$configs = $wpdb->get_results('SELECT * FROM '.$t_f_ap_cnofig.' ORDER BY id '); 
 ?>
 
-<?php 
+<?php     foreach($configs as $config){
 	   if($config!=null):
 	   $errCode = checkCanUpdate($config);
 ?>      
@@ -2614,7 +2614,7 @@ $config = $wpdb->get_row('SELECT * FROM '.$t_f_ap_cnofig.' ORDER BY id LIMIT 1')
 		    <strong><a href="admin.php?page=wp-autopost/wp-autopost-tasklist.php&createExample=1"><?php echo  __('Or Create an &lt;Example Task> to quick start.','wp-autopost'); ?></a></strong>
 		 </td>
 	   </tr>
-	 <?php endif; ?>
+<?php endif; }?>
 	   </tbody>
 	 </table>
 	 <div class="tablenav">
