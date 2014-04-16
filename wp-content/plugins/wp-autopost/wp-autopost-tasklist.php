@@ -1836,7 +1836,7 @@ jQuery(document).ready(function($){
 
 
 
-   <p><input type="submit" class="button-primary"  value="<?php echo __('Save Changes'); ?>" disabled="true" />
+   <p><input type="submit" class="button-primary"  value="<?php echo __('Save Changes'); ?>"  />
     <code><?php echo __('This feature is not available in the free version','wp-autopost'); ?>, <a href="http://wp-autopost.org" target="_blank"><?php echo __('Upgrade','wp-autopost'); ?></a></code></p>
 
 
